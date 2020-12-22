@@ -14,8 +14,8 @@ import mister_ed.adversarial_perturbations as ap
 
 from _polytope_ import Polytope, Face
 import utilities as utils
-from .domains import Domain
-from .plnn import PLNN
+from domains import Domain
+from plnn import PLNN
 import inspect
 print("PLNN", inspect.getfile(PLNN))
 import torch
