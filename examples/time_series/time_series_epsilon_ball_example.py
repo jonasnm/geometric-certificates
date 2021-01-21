@@ -49,7 +49,7 @@ y = torch.Tensor(np.array(target_train-1)).long()
 # Training the default network
 opt = optim.Adam(net.parameters(), lr=1e-3)
 
-for i in range(3000):
+for i in range(1000):
     out = net(Variable(X))
     out
     loss = nn.CrossEntropyLoss()(out, Variable(y))
@@ -61,3 +61,14 @@ for i in range(3000):
     opt.zero_grad()
     (loss).backward()
     opt.step()
+
+# Initializing GeoCert object
+# geo = GeoCert(plnn_obj, hyperbox_bounds=(0.0, 1.0), verbose=True)
+geo = GeoCert(plnn_obj, verbose=True)
+
+# Counting the number of linear regions
+test_point = X[0]
+geo.run(test_point, lp_norm='l_2', problem_type='count_regions', decision_radius=0.02)
+
+# Find the epsilon ball around a "point"
+l2_output = geo.run(test_point, lp_norm='l_2', compute_upper_bound=True)
