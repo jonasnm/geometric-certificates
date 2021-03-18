@@ -3,14 +3,13 @@
 """
 import sys
 import itertools
-#sys.path.append('mister_ed')
+# sys.path.append('mister_ed')
 import mister_ed.adversarial_perturbations as ap
-#import prebuilt_loss_functions as plf
-
+import mister_ed.prebuilt_loss_functions as plf
 #import prebuilt_loss_functions as plf
 #import loss_functions as lf
-#import adversarial_attacks as aa
-#import utils.pytorch_utils as me_utils
+import mister_ed.adversarial_attacks as aa
+import mister_ed.utils.pytorch_utils as me_utils
 
 from _polytope_ import Polytope, Face
 import utilities as utils

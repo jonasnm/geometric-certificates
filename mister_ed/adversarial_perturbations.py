@@ -7,9 +7,9 @@ TODO: this needs to be fleshed out, as a general technique to make adversarial
 
 import torch
 import torch.nn as nn
-from . import spatial_transformers as st
-from .utils import image_utils as img_utils
-from .utils import pytorch_utils as utils
+import spatial_transformers as st
+from utils import image_utils as img_utils
+from utils import pytorch_utils as utils
 from torch.autograd import Variable
 import functools
 
@@ -320,8 +320,10 @@ class AdversarialPerturbation(nn.Module):
             assert labels is not None
 
         # Gather tensors
-        adversarials = Variable(self.adversarial_tensors())
-        originals = Variable(self.originals)
+        # adversarials = Variable(self.adversarial_tensors())
+        # originals = Variable(self.originals)
+        adversarials = torch.tensor(self.adversarial_tensors(), requires_grad=True)
+        originals = torch.tensor(self.originals, requires_grad=True)
 
         # Run adversarials through the net
         adv_out = classifier_net(normalizer(adversarials))
